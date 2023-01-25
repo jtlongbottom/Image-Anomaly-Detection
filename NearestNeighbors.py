@@ -148,26 +148,72 @@ for j in range(1,end):
     
 out = np.reshape(out,np.shape(img))
 #%%
+max = np.max(out)
+#11.7 million
+
+out = out/ max
 
 
-thresh = np.mean(out)
-histogram, bin_edges = np.histogram(out, bins=10, range=(0.0, 300000.0))
+histogram, bin_edges = np.histogram(out, bins=10, range=(0.0, 1.0))
 
-fig, ax = plt.subplots()
-plt.plot(bin_edges[0:-1], histogram)
+#fig, ax = plt.subplots()
+#plt.plot(bin_edges[0:-1], histogram)
 #plt.show()
 
 #%%
-t = 20000000
-binary_mask = out > t
+max_thresh_SOI = 0
+max_thresh = 0
 
+for i in range(1,100):
+    thresh = i/100.0
+    binary_mask = out > thresh
+    binary_mask = binary_mask*1
+
+    thresh_num = 0
+    thresh_denom = 0
+
+    for i in range(0,len(binary_mask)):
+        for j in range(0,len(binary_mask[0])):
+            if (binary_mask[i][j] == 1 and ground[i][j]==1):
+                thresh_num =thresh_num+2
+                thresh_denom =thresh_denom+2
+            elif (binary_mask[i][j]==1 or ground[i][j] == 1):
+                thresh_denom =thresh_denom+1
+            
+    thresh_SOI = (thresh_num)/thresh_denom
+
+    if (thresh_SOI > max_thresh_SOI):
+        max_thresh_SOI = thresh_SOI
+        max_thresh = thresh
+
+print("Threshold SOI for " + image)
+print(np.round(max_thresh_SOI,4))
+print( " at ")
+print(max_thresh)  
+
+binary_mask = out > max_thresh
+    
 fig, ax = plt.subplots()
-plt.title(t)
+plt.title(max_thresh)
 plt.imshow(binary_mask, cmap="gray")
 plt.show()
-#%%
 
+#%%
+plt.title(image + " Algorithm")
 plt.gray()
 plt.imshow(out)
-
 plt.show()
+
+
+alg_num=0
+alg_denom = 0
+for i in range(0,len(out)):
+    for j in range(0,len(out[0])):
+        if (out[i][j] == 1 and ground[i][j]==1):
+            alg_num =alg_num+1
+        if (out[i][j]==1 or ground[i][j] == 1):
+            alg_denom =alg_denom+1
+
+alg_SOI = alg_num/alg_denom
+print("Algorithm SOI for " + image)
+print(np.round(alg_SOI,4))
