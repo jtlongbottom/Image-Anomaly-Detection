@@ -1,13 +1,12 @@
 # Senior-Thesis
 Senior Thesis in 2022-2023 Academic Year
 
+Updaed files begin with AllBands, I am working to remove the other two files but can't seem to find where to do so. The images in the code are uploaded directly from my computer so they will need to be downloaded and uploaded through one's own computer to rerun the code directl.
+
 Based off work from https://github.com/fverdoja/LAD-Laplacian-Anomaly-Detector 
 
-The NearestNeighbors file contains the Laplacian Matrix, along with an additional two versions of the exponential distance matrix. 
 
-The NextNearestNeighbors file contains the exponential distance matrix that uses the 13 nearest pixels around it (the 4 nearest along with the 9 next nearest neighbors).
-
-Both files include all 4 satiellite images used in Verdoja and Grangetto's paper "Graph Laplacian for image anomaly detection".
+All files include all 5 satiellite images used in Verdoja and Grangetto's paper "Graph Laplacian for image anomaly detection".
 
 # Use
 Programming through Python
