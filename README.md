@@ -1,7 +1,7 @@
 # Senior-Thesis
 Senior Thesis in 2022-2023 Academic Year
 
-Updaed files begin with AllBands, I am working to remove the other two files but can't seem to find where to do so. The images in the code are uploaded directly from my computer so they will need to be downloaded and uploaded through one's own computer to rerun the code directl.
+The images in the code are uploaded directly from my computer so they will need to be downloaded and uploaded through one's own computer to rerun the code directl.
 
 Based off work from https://github.com/fverdoja/LAD-Laplacian-Anomaly-Detector 
 
